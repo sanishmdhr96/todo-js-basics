@@ -21,6 +21,16 @@ function addTodoItem() {
 
 }
 
+/*
+1. Dynamic Events
+2. Dynamic classes
+*/
+
+/**
+ * Recursion
+ * Re-rendering
+ */
+
 function updateTodoList() {
     // Get the todo element
     const todoListElement = document.getElementById('todo-list')
@@ -34,13 +44,22 @@ function updateTodoList() {
         const listItem = document.createElement('li')
         listItem.textContent = item.text
 
+        console.log(item)
+
+        listItem.addEventListener('click', () => {
+            item.completed = true
+            updateTodoList()
+        })
+
+
+        if (item.completed) {
+            listItem.classList.add('completed')
+        }
+
+        // addEventListener
+
         // add item to list
         todoListElement.appendChild(listItem)
 
     }
-
-
-
-
-
 }

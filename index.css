@@ -26,6 +26,7 @@ ul {
   list-style: none;
   padding: 0;
   margin: 20px 0;
+  padding-inline-start: 0px;
 }
 
 li {
@@ -34,4 +35,11 @@ li {
   border: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
+  border-radius: 5px;
+  width: 400px;
+}
+.completed {
+  text-decoration: line-through;
+  border: 1px solid green;
+  background-color: rgba(165, 241, 165, 0.381);
 }
