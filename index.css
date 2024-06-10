@@ -43,3 +43,11 @@ li {
   border: 1px solid green;
   background-color: rgba(165, 241, 165, 0.381);
 }
+
+.cursor {
+  cursor: pointer;
+}
+
+.deleted {
+  display: none;
+}

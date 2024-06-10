@@ -1,6 +1,5 @@
 // Button click -> input field ko data tanna paryo
 
-const todoList = []
 
 function addTodoItem() {
     // get input value
@@ -10,7 +9,8 @@ function addTodoItem() {
     // TODO list object
     const newTodoItem = {
         text: inputElementValue,
-        completed: false
+        completed: false,
+        deleted: false
     }
 
     todoList.push(newTodoItem)
@@ -39,16 +39,32 @@ function updateTodoList() {
     todoListElement.innerHTML = ''
 
     // loop through the todolist array and create new list items
-    for (const item of todoList) {
-        // create list item
+    todoList.forEach((item, index) => {
         const listItem = document.createElement('li')
         listItem.textContent = item.text
 
-        console.log(item)
+        const span = document.createElement('span');
+        span.textContent = "\u00d7";
+        span.classList.add('cursor')
+        listItem.appendChild(span);
 
-        listItem.addEventListener('click', () => {
+
+
+        listItem.addEventListener('click', (event) => {
+            event.stopPropagation()
             item.completed = true
             updateTodoList()
+        })
+
+        span.addEventListener('click', (event) => {
+            event.stopPropagation()
+            // REMOVED FROM UI
+            // listItem.remove()
+            // SOFT DELETE from ARRAY
+            // item.deleted = true;
+            todoList.splice(index, 1)
+            updateTodoList()
+            console.log('todoList', todoList)
         })
 
 
@@ -56,10 +72,26 @@ function updateTodoList() {
             listItem.classList.add('completed')
         }
 
+        if (item.deleted) {
+            listItem.classList.add('deleted')
+        }
+
         // addEventListener
 
         // add item to list
         todoListElement.appendChild(listItem)
+    })
+    // for (const item of todoList) {
+    //     // create list item
 
-    }
+
+    // }
 }
+
+const todoList = []
+
+
+test = 2
+console.log('test', test);
+
+var test = 5;
